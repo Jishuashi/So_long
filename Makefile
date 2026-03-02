@@ -9,7 +9,7 @@ CFLAGS      	= -Wall -Wextra -Werror -g
 RM          	= rm -f
 
 MAIN        	= so_long.c
-SRCS        	= 
+SRCS        	= maps_parsing.c	utils.c
 OBJS        	= $(SRCS:.c=.o)
 
 GREEN       	= \033[0;32m

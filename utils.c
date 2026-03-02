@@ -1,46 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/24 11:38:08 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/02 18:49:25 by hchartie         ###   ########.fr       */
+/*   Created: 2026/03/02 15:05:39 by hchartie          #+#    #+#             */
+/*   Updated: 2026/03/02 15:30:06 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int ac, char *av[])
+char	**create_tab(size_t row, size_t col)
 {
-	char	**map;
-	/* size_t	i;
-	size_t	j; */
+	size_t	i;
+	char	**res;
 
-	if (ac != 2)
+	res = (char **)malloc(sizeof(char *) * col);
+	if (!res)
 	{
 		ft_putstr_fd("Error\n", 2);
 		exit(1);
 	}
-	else if (!ft_strnstr(av[1], ".ber", ft_strlen(av[1]))
-		|| !ft_strchr(av[1], 47))
+	i = 0;
+	while (i < col)
 	{
-		ft_putstr_fd("Error\n", 2);
-		exit(1);
-	}
-	map = parse_map(av[1]);
-	/* j = 0;
-	while (i < 5)
-	{
-		i = 0;
-		while (j < 9)
+		res[i] = (char *)malloc(sizeof(char) * row);
+		if (!res[i])
 		{
-			ft_printf("%c", map[i][j]);
-			j++;
+			ft_free_all(res);
+			ft_putstr_fd("Error\n", 2);
+			exit(1);
 		}
-		ft_printf("\n");
 		i++;
-	} */
-	ft_free_all(map);
+	}
+	return (res);
+}
+
+void	ft_free_all(char **to_free)
+{
+	while (*to_free)
+	{
+		free(*to_free);
+		to_free++;
+	}
+	free(to_free);
 }
