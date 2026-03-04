@@ -8,8 +8,8 @@ CC          	= cc
 CFLAGS      	= -Wall -Wextra -Werror -g
 RM          	= rm -f
 
-MAIN        	= so_long.c
-SRCS        	= maps_parsing.c	utils.c
+MAIN        	= src/so_long.c
+SRCS        	= src/maps_parsing.c	src/utils.c
 OBJS        	= $(SRCS:.c=.o)
 
 GREEN       	= \033[0;32m

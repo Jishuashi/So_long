@@ -6,17 +6,19 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:38:08 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/02 18:49:25 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/04 18:47:26 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 int	main(int ac, char *av[])
 {
 	char	**map;
-	/* size_t	i;
-	size_t	j; */
+	size_t	col;
+	size_t	row;
+	size_t	i;
+	size_t	j;
 
 	if (ac != 2)
 	{
@@ -29,18 +31,21 @@ int	main(int ac, char *av[])
 		ft_putstr_fd("Error\n", 2);
 		exit(1);
 	}
-	map = parse_map(av[1]);
-	/* j = 0;
-	while (i < 5)
+	col = get_nb_col(av[1]);
+	row = get_nb_row(av[1]);
+	map = parse_map(av[1], row, col);
+	i = 0;
+	while (i < row)
 	{
-		i = 0;
-		while (j < 9)
+		j = 0;
+		while (j < col)
 		{
 			ft_printf("%c", map[i][j]);
 			j++;
 		}
 		ft_printf("\n");
 		i++;
-	} */
+	}
 	ft_free_all(map);
+	return (0);
 }
