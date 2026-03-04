@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/24 11:38:08 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/04 19:15:03 by hchartie         ###   ########.fr       */
+/*   Created: 2026/03/04 19:21:02 by hchartie          #+#    #+#             */
+/*   Updated: 2026/03/04 20:07:37 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	main(int ac, char *av[])
+void	free_lines(int fd_map, char *line)
 {
-	char	**map;
-	size_t	col;
-	size_t	row;
-
-	if (ac != 2)
+	while (line)
 	{
-		ft_putstr_fd("Error\n", 2);
-		exit(1);
+		free(line);
+		line = ft_get_next_line(fd_map);
 	}
-	else if (!ft_strnstr(av[1], ".ber", ft_strlen(av[1]))
-		|| !ft_strchr(av[1], 47))
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit(1);
-	}
-	check_map_size(open(av[1], O_RDONLY));
-	col = get_nb_col(av[1]);
-	row = get_nb_row(av[1]);
-	map = parse_map(av[1], row, col);
-	ft_free_all(map);
-	return (0);
+	ft_putstr_fd("Error\n", 2);
+	close (fd_map);
+	exit(1);
 }

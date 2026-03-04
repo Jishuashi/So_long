@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 15:05:39 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/04 18:53:08 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/04 20:08:11 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ size_t	get_nb_col(char	*path)
 	}
 	first_line = ft_get_next_line(fd_map);
 	close(fd_map);
+	if (!first_line)
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(1);
+	}
 	res = ft_strlen(first_line);
 	free(first_line);
 	return (res);
@@ -95,6 +100,34 @@ size_t	get_nb_row(char	*path)
 		row = ft_get_next_line(fd_map);
 	}
 	close(fd_map);
-	free(row);
 	return (res);
+}
+
+void	check_map_size(int fd_map)
+{
+	char	*line;
+	size_t	col;
+
+	if (fd_map == -1)
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(1);
+	}
+	line = ft_get_next_line(fd_map);
+	if (!line)
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(1);
+	}
+	col = ft_strlen(line) - (line[ft_strlen(line) - 1] == '\n');
+	free(line);
+	line = ft_get_next_line(fd_map);
+	while (line)
+	{
+		if ((ft_strlen(line) - (line[ft_strlen(line) - 1] == '\n')) != col)
+			free_lines(fd_map, line);
+		free(line);
+		line = ft_get_next_line(fd_map);
+	}
+	close(fd_map);
 }
