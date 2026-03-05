@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 15:05:39 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/04 20:08:11 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/05 11:24:29 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@ char	**create_tab(size_t row, size_t col)
 		ft_putstr_fd("Error\n", 2);
 		exit(1);
 	}
-
 	i = 0;
 	while (i < row)
 	{
 		res[i] = (char *)malloc(sizeof(char) * (col + 1));
-		ft_bzero(res[i], (col+1));
+		ft_bzero(res[i], (col + 1));
 		if (!res[i])
 		{
 			res[i] = NULL;

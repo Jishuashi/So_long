@@ -41,6 +41,9 @@ fclean: clean
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	@$(MAKE) -C $(MINILIBX_DIR) clean
 
+norm:
+	norminette src/ includes/
+
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re norm
