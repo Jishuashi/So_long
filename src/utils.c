@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 15:05:39 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/05 11:24:29 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/06 15:25:03 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ char	**create_tab(size_t row, size_t col)
 	res = (char **)malloc(sizeof(char *) * (row + 1));
 	if (!res)
 	{
-		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("Error\nThe allocation failed.\n", 2);
 		exit(1);
 	}
 	i = 0;
 	while (i < row)
 	{
-		res[i] = (char *)malloc(sizeof(char) * (col + 1));
-		ft_bzero(res[i], (col + 1));
+		res[i] = (char *)malloc(sizeof(char) * col);
+		ft_bzero(res[i], col);
 		if (!res[i])
 		{
 			res[i] = NULL;
 			ft_free_all(res);
-			ft_putstr_fd("Error\n", 2);
+			ft_putstr_fd("Error\nThe allocation failed.\n", 2);
 			exit(1);
 		}
 		i++;
@@ -63,14 +63,14 @@ size_t	get_nb_col(char	*path)
 	fd_map = open(path, O_RDONLY);
 	if (fd_map == -1)
 	{
-		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("Error\nNo such file or directory\n", 2);
 		exit(1);
 	}
 	first_line = ft_get_next_line(fd_map);
 	close(fd_map);
 	if (!first_line)
 	{
-		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("Error\nFile Empty.\n", 2);
 		exit(1);
 	}
 	res = ft_strlen(first_line);
@@ -87,7 +87,7 @@ size_t	get_nb_row(char	*path)
 	fd_map = open(path, O_RDONLY);
 	if (fd_map == -1)
 	{
-		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("Error\nNo such file or directory\n", 2);
 		exit(1);
 	}
 	row = ft_get_next_line(fd_map);
@@ -109,13 +109,13 @@ void	check_map_size(int fd_map)
 
 	if (fd_map == -1)
 	{
-		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("Error\nNo such file or directory.\n", 2);
 		exit(1);
 	}
 	line = ft_get_next_line(fd_map);
 	if (!line)
 	{
-		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd("Error\nThe allocation failed.\n", 2);
 		exit(1);
 	}
 	col = ft_strlen(line) - (line[ft_strlen(line) - 1] == '\n');
