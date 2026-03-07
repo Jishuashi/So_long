@@ -6,26 +6,27 @@ MINILIBX		= $(MINILIBX_DIR)/libmlx.a
 
 CC          	= cc
 CFLAGS      	= -Wall -Wextra -Werror -g
+MLXFLAG			= -lXext -lX11 -lm -lz
 RM          	= rm -f
 
 MAIN        	= src/so_long.c
 
 SRCS        	= src/maps_parsing.c	src/utils.c			src/utils2.c	src/checker.c \
-				  src/map_copy.c		src/flood_fill.c	src/point.c
+				  src/map_copy.c		src/flood_fill.c	src/point.c		src/events.c
 
 OBJS        	= $(SRCS:.c=.o)
 
 GREEN       	= \033[0;32m
 RESET       	= \033[0m
 
-NORM_ERR = norminette src/ includes/ | grep "Error" | wc -l
-NORM = norminette src/ includes/ | grep "Error" 
+NORM_ERR = norminette src/ includes/ textures/ | grep "Error" | wc -l
+NORM = norminette src/ includes/ textures/ | grep "Error" 
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJS) $(MAIN)
 	@echo -e "$(GREEN)Compiling $(NAME)...$(RESET)"
-	$(CC) $(CFLAGS) $(MAIN) $(OBJS) $(LIBFT) $(MINILIBX) -o $(NAME)
+	$(CC) $(CFLAGS) $(MAIN) $(OBJS) $(LIBFT) $(MINILIBX) $(MLXFLAG) -o $(NAME)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR) all

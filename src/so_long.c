@@ -6,13 +6,14 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:38:08 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 16:52:39 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/07 18:46:11 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
 static	void	so_long(char **map, size_t row, size_t col);
+static void	launch_game(char **map, size_t row, size_t col);
 
 int	main(int ac, char *av[])
 {
@@ -49,4 +50,17 @@ static	void	so_long(char **map, size_t row, size_t col)
 		exit (1);
 	}
 	checker_finishable(map, row, col);
+	launch_game(map, row, col);
+}
+
+static void	launch_game(char **map, size_t row, size_t col)
+{
+	t_game	game;
+
+	game.map = map;
+	game.mlx = mlx_init();
+	game.win = mlx_new_window(game.mlx, (row * 64), (col * 64), "So Long");
+	mlx_hook(game.win, 17, 0, (int (*)())(void *)close_game, &game);
+	mlx_key_hook(game.win, (int (*)())(void *)key_press, &game);
+	mlx_loop(game.mlx);
 }
