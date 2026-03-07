@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 23:38:05 by hchartie          #+#    #+#             */
-/*   Updated: 2026/01/08 13:03:49 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/07 13:38:32 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*ft_get_next_line(int fd)
 	static char	*acc;
 	char		*line;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	acc = ft_put_in_acc(fd, acc);
 	if (!acc)
 		return (NULL);
@@ -52,13 +54,13 @@ static char	*ft_put_in_acc(int fd, char *acc)
 	char	*temp;
 	int		read_bytes;
 
-	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
 		return (NULL);
 	read_bytes = 1;
-	while (!ft_gnl_strchr(acc, '\n') && read_bytes > 0)
+	while (!ft_gnl_strchr(acc, '\n') && read_bytes != 0)
 	{
-		read_bytes = read (fd, buff, BUFFER_SIZE);
+		read_bytes = read(fd, buff, BUFFER_SIZE);
 		if (read_bytes == -1)
 		{
 			free(buff);
