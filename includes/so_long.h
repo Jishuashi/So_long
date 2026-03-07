@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 12:01:00 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 18:33:41 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/07 19:27:23 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 # include "../libft/libft.h"
 # include "./point.h"
+# include "./assets.h"
 # include "../minilibx/mlx.h"
 # include <stdio.h>
 # include <errno.h>
@@ -23,9 +24,14 @@
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
-	char	**map;
+	void		*mlx;
+	void		*win;
+	int			width;
+	int			height;
+	char		**map;
+	t_point		*player_pos;
+	t_point		*size;
+	t_assets	*assets;
 }	t_game;
 
 void	ft_free_all(char **to_free);

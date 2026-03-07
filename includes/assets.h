@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   assets.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/07 18:28:20 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 20:04:01 by hchartie         ###   ########.fr       */
+/*   Created: 2026/03/07 19:16:19 by hchartie          #+#    #+#             */
+/*   Updated: 2026/03/07 19:24:32 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"	
+#ifndef ASSETS_H
+# define ASSETS_H
 
-int	close_game(t_game *game)
+typedef struct s_assets
 {
-	mlx_destroy_window(game->mlx, game->win);
-	mlx_destroy_display(game->mlx);
-	free(game->mlx);
-	free(game->size);
-	free(game->player_pos);
-	ft_free_all(game->map);
-	exit(0);
-	return (0);
-}
+	void	*wall;
+	void	*floor;
+	void	*player;
+	void	*coin;
+	void	*exit;
+	int		img_width;
+	int		img_height;
+}	t_assets;
 
-int	key_press(int keycode, t_game *game)
-{
-	if (keycode == 65307)
-		close_game(game);
-	return (0);
-}
+#endif

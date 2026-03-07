@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:38:08 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 18:46:11 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/07 19:14:26 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,14 @@ static void	launch_game(char **map, size_t row, size_t col)
 {
 	t_game	game;
 
+	ft_memset(&game, 0, sizeof(t_game));
 	game.map = map;
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, (row * 64), (col * 64), "So Long");
+	game.width = (col * 64);
+	game.height = (row * 64);
+	game.size = get_point(row, col);
+	game.win = mlx_new_window(game.mlx, game.width, game.height, "So Long");
+	game.player_pos = get_player_pos(game.map, game.size->x, game.size->y);
 	mlx_hook(game.win, 17, 0, (int (*)())(void *)close_game, &game);
 	mlx_key_hook(game.win, (int (*)())(void *)key_press, &game);
 	mlx_loop(game.mlx);
