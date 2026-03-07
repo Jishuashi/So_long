@@ -18,10 +18,13 @@ OBJS        	= $(SRCS:.c=.o)
 GREEN       	= \033[0;32m
 RESET       	= \033[0m
 
+NORM_ERR = norminette src/ includes/ | grep "Error" | wc -l
+NORM = norminette src/ includes/ | grep "Error" 
+
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJS) $(MAIN)
-	@echo "$(GREEN)Compiling $(NAME)...$(RESET)"
+	@echo -e "$(GREEN)Compiling $(NAME)...$(RESET)"
 	$(CC) $(CFLAGS) $(MAIN) $(OBJS) $(LIBFT) $(MINILIBX) -o $(NAME)
 
 $(LIBFT):
@@ -45,7 +48,13 @@ fclean: clean
 	@$(MAKE) -C $(MINILIBX_DIR) clean
 
 norm:
-	norminette src/ includes/
+	@ERR_COUNT=$$(norminette src/ includes/ | grep "Error" | wc -l); \
+	if [ $$ERR_COUNT -eq 0 ]; then \
+		echo -e "\033[32mNorminette: TOUT EST PARFAIT !\033[0m"; \
+	else \
+		echo -e "\033[31mNorminette: ERREURS TROUVÉES :\033[0m"; \
+		norminette src/ includes/ | grep "Error"; \
+	fi
 
 re: fclean all
 

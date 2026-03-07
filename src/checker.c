@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:24:22 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 17:15:51 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/07 17:58:30 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int	check_walls(char **map, size_t row, size_t col);
 static void	check_playable(char **map, size_t row, size_t col);
 static void	check_value(char **map, int player, int collec, int exit);
-
 
 char	checker(char **map, size_t row, size_t col)
 {
@@ -127,4 +126,3 @@ void	checker_finishable(char	**map, size_t row, size_t col)
 	}
 	ft_free_all(visited);
 }
-
