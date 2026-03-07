@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:38:08 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 13:48:46 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/07 16:52:39 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ static	void	so_long(char **map, size_t row, size_t col)
 		ft_putstr_fd("Error\nThe map is not surrounded by walls.\n", 2);
 		exit (1);
 	}
+	checker_finishable(map, row, col);
 }

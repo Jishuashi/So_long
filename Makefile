@@ -10,8 +10,8 @@ RM          	= rm -f
 
 MAIN        	= src/so_long.c
 
-SRCS        	= src/maps_parsing.c	src/utils.c		src/utils2.c	src/checker.c \
-				  src/map_copy.c
+SRCS        	= src/maps_parsing.c	src/utils.c			src/utils2.c	src/checker.c \
+				  src/map_copy.c		src/flood_fill.c	src/point.c
 
 OBJS        	= $(SRCS:.c=.o)
 

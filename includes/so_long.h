@@ -6,18 +6,21 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 12:01:00 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 14:24:02 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/07 16:59:51 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "../libft/libft.h"
+# include "./point.h"
 # include <stdio.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <string.h>
 # include <math.h>
+
+
 
 void	ft_free_all(char **to_free);
 char	**create_tab(size_t row, size_t col);
@@ -28,11 +31,8 @@ void	check_map_size(int fd_map);
 void	free_lines(int fd_map, char *line);
 char	checker(char **map, size_t row, size_t col);
 char	**copy_map(char **map, size_t row);
-
-typedef struct s_point
-{
-	int	x;
-	int	y;
-}	t_point;
+void	flood_fill(char **map, t_point *pos);
+t_point	*get_player_pos(char **map, size_t row, size_t col);
+void	checker_finishable(char	**map, size_t row, size_t col);
 
 #endif

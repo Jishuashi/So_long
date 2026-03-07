@@ -1,45 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/04 19:21:02 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 16:57:53 by hchartie         ###   ########.fr       */
+/*   Created: 2026/03/07 15:57:40 by hchartie          #+#    #+#             */
+/*   Updated: 2026/03/07 17:06:53 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	free_lines(int fd_map, char *line)
+void	flood_fill(char **map, t_point *pos)
 {
-	while (line)
+	if (map[pos->x][pos->y] == '1')
 	{
-		free(line);
-		line = ft_get_next_line(fd_map);
+		free(pos);
+		return ;
 	}
-	ft_putstr_fd("Error\n", 2);
-	close (fd_map);
-	exit(1);
-}
-
-t_point	*get_player_pos(char **map, size_t row, size_t col)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	while (i < row)
+	if (map[pos->x][pos->y] == 'V')
 	{
-		j = 0;
-		while (j < col)
-		{
-			if (map[i][j] == 'P')
-				return (get_point(i, j));
-			j++;
-		}
-		i++;
+		free(pos);
+		return ;
 	}
-	return (get_point(0, 0));
+	map[pos->x][pos->y] = 'V';
+	flood_fill(map, get_point((pos->x + 1), pos->y));
+	flood_fill(map, get_point((pos->x - 1), pos->y));
+	flood_fill(map, get_point(pos->x, (pos->y + 1)));
+	flood_fill(map, get_point(pos->x, (pos->y - 1)));
+	free(pos);
 }
