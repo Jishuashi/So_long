@@ -6,18 +6,26 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:24:22 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 13:49:40 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/07 15:54:21 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static	int	check_walls(char **map, size_t row, size_t col);
+static int	check_walls(char **map, size_t row, size_t col);
+static void	check_playable(char **map, size_t row, size_t col);
+static void	check_value(char **map, int player, int collec, int exit);
+
 
 char	checker(char **map, size_t row, size_t col)
 {
+	char	**visited;
+
 	if (!check_walls(map, row, col))
 		return (1);
+	check_playable(map, row, col);
+	visited = copy_map(map, row);
+	ft_free_all(visited);
 	return (0);
 }
 
@@ -43,4 +51,54 @@ static	int	check_walls(char **map, size_t row, size_t col)
 		i++;
 	}
 	return (1);
+}
+
+static	void	check_playable(char **map, size_t row, size_t col)
+{
+	size_t	i;
+	size_t	j;
+	int		check[3];
+
+	i = 0;
+	check[0] = 0;
+	check[1] = 0;
+	check[2] = 0;
+	while (i < row)
+	{
+		j = 0;
+		while (j < col)
+		{
+			if (map[i][j] == 'P')
+				check[0]++;
+			if (map[i][j] == 'E')
+				check[1]++;
+			if (map[i][j] == 'C')
+				check[2]++;
+			j++;
+		}
+		i++;
+	}
+	check_value(map, check[0], check[1], check[2]);
+}
+
+static void	check_value(char **map, int player, int collec, int ex)
+{
+	if (player != 1)
+	{
+		ft_free_all(map);
+		ft_putstr_fd("Error\nMore or less one Player in map\n", 2);
+		exit(1);
+	}
+	if (ex != 1)
+	{
+		ft_free_all(map);
+		ft_putstr_fd("Error\nMore or less one Exit in map\n", 2);
+		exit(1);
+	}
+	if (collec < 1)
+	{
+		ft_free_all(map);
+		ft_putstr_fd("Error\nLess one Collection in map\n", 2);
+		exit(1);
+	}
 }

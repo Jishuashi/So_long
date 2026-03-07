@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 12:01:00 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/05 16:37:22 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/07 14:24:02 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,12 @@ size_t	get_nb_row(char	*path);
 void	check_map_size(int fd_map);
 void	free_lines(int fd_map, char *line);
 char	checker(char **map, size_t row, size_t col);
+char	**copy_map(char **map, size_t row);
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
 
 #endif

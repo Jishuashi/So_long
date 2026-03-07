@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*   map_copy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/05 16:14:31 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/05 16:21:46 by hchartie         ###   ########.fr       */
+/*   Created: 2026/03/07 14:23:19 by hchartie          #+#    #+#             */
+/*   Updated: 2026/03/07 14:23:51 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	flood_fill(char **map, size_t row, size_t col)
+char	**copy_map(char **map, size_t row)
 {
-	char	**visited;
+	char	**copy;
+	size_t	i;
 
-	visited = create_tab(row, col);
-}
-
-static void	check_flood_fill(char **map, size_t x, size_t y, char **visited)
-{
+	copy = (char **)malloc(sizeof(char *) * (row + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (i < row)
+	{
+		copy[i] = ft_strdup(map[i]);
+		if (!copy[i])
+		{
+			ft_free_all(copy);
+			return (NULL);
+		}
+		i++;
+	}
+	copy[i] = NULL;
+	return (copy);
 }
