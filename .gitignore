@@ -3,6 +3,6 @@ so_long
 *.a
 *.o
 *.out
-minilibx
+minilibx-linux
 vgcore.*
 *.txt

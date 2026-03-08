@@ -1,7 +1,7 @@
 NAME            = so_long
 
 LIBFT_DIR       = libft
-MINILIBX_DIR    = minilibx
+MINILIBX_DIR    = minilibx-linux
 
 LIBFT           = $(LIBFT_DIR)/libft.a
 MINILIBX        = $(MINILIBX_DIR)/libmlx.a

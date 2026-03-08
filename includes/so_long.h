@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 12:01:00 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/08 03:02:33 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/08 14:20:08 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "../libft/libft.h"
 # include "./point.h"
 # include "./assets.h"
-# include "../minilibx/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <stdio.h>
 # include <errno.h>
 # include <fcntl.h>
