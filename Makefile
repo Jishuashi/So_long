@@ -22,7 +22,8 @@ SRCS            = src/maps_parsing.c \
                   src/map_copy.c \
                   src/flood_fill.c \
                   src/point.c \
-                  src/events.c
+                  src/events.c \
+				  src/utils/utils_assets.c
 
 OBJS            = $(SRCS:src/%.c=$(OBJ_DIR)/%.o)
 
