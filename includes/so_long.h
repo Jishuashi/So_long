@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 12:01:00 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 21:23:09 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/08 03:02:33 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ typedef struct s_game
 	int			height;
 	char		**map;
 	t_point		*player_pos;
+	t_point		*exit_pos;
 	t_point		*size;
 	t_assets	*assets;
+	int			nb_move;
+	int			nb_collec;
 }	t_game;
 
 void	ft_free_all(char **to_free);
@@ -48,5 +51,8 @@ t_point	*get_player_pos(char **map, size_t row, size_t col);
 void	checker_finishable(char	**map, size_t row, size_t col);
 int		key_press(int keycode, t_game *game);
 int		close_game(t_game *game);
+void	move_player(t_game *game, t_point *new_pos);
+void	get_collectible_nb(t_game *game);
+t_point	*get_exit_pos(char **map, size_t row, size_t col);
 
 #endif

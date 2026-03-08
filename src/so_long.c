@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:38:08 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/08 00:12:30 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/08 03:19:52 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,11 @@ static void	launch_game(char **map, size_t row, size_t col)
 	game.size = get_point(row, col);
 	game.win = mlx_new_window(game.mlx, game.width, game.height, "So Long");
 	game.player_pos = get_player_pos(game.map, game.size->x, game.size->y);
+	game.exit_pos = get_exit_pos(game.map, game.size->x, game.size->y);
+	game.nb_move = 0;
+	game.nb_collec = 0;
 	init_assets(&game);
+	get_collectible_nb(&game);
 	render_map(&game);
 	mlx_hook(game.win, 17, 0, (int (*)())(void *)close_game, &game);
 	mlx_key_hook(game.win, (int (*)())(void *)key_press, &game);

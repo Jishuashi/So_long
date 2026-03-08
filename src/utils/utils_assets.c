@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:44:14 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/08 00:56:45 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/08 02:24:17 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	render_map(t_game *game)
 	int	j;
 
 	i = 0;
-	while (i < (game->height / 64))
+	while (i < game->size->x)
 	{
 		j = 0;
-		while (j < (game->width / 64))
+		while (j < game->size->y)
 		{
 			put_on_win(game->map[i][j], game, get_point(j * 64, i * 64));
 			j++;

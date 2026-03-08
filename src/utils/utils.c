@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:09:41 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 20:39:29 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/08 03:17:22 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,43 @@ char	**create_tab(size_t row, size_t col)
 	}
 	res[i] = NULL;
 	return (res);
+}
+
+void	get_collectible_nb(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < game->size->x)
+	{
+		j = 0;
+		while (j < game->size->y)
+		{
+			if (game->map[i][j] == 'C')
+				game->nb_collec++;
+			j++;
+		}
+		i++;
+	}
+}
+
+t_point	*get_exit_pos(char **map, size_t row, size_t col)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < row)
+	{
+		j = 0;
+		while (j < col)
+		{
+			if (map[i][j] == 'E')
+				return (get_point(i, j));
+			j++;
+		}
+		i++;
+	}
+	return (get_point(0, 0));
 }
