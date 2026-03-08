@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:10:29 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 20:29:07 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/08 01:20:29 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	free_lines(int fd_map, char *line)
 		free(line);
 		line = ft_get_next_line(fd_map);
 	}
-	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd("Error\nThe map was not rectangular\n", 2);
 	close (fd_map);
 	exit(1);
 }
