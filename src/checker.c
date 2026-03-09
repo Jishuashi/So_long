@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:24:22 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 17:58:30 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/09 14:44:22 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,28 @@ static void	check_value(char **map, int player, int collec, int exit);
 
 char	checker(char **map, size_t row, size_t col)
 {
+	size_t	i;
+	size_t	j;
+
 	if (!check_walls(map, row, col))
 		return (1);
+	i = 0;
+	while (i < row)
+	{
+		j = 0;
+		while (j < col)
+		{
+			if (map[i][j] != 'E' || map[i][j] != '1' || map[i][j] != 'C'
+				|| map[i][j] != 'P' || map[i][j] != '0')
+			{
+				ft_free_all(map);
+				ft_putstr_fd("Error\nThe map contain an invalid char.\n", 2);
+				exit (1);
+			}
+			j++;
+		}
+		i++;
+	}
 	check_playable(map, row, col);
 	return (0);
 }
@@ -93,7 +113,7 @@ static void	check_value(char **map, int player, int collec, int ex)
 	if (collec < 1)
 	{
 		ft_free_all(map);
-		ft_putstr_fd("Error\nLess one Collection in map\n", 2);
+		ft_putstr_fd("Error\nLess one Collectible in map\n", 2);
 		exit(1);
 	}
 }
