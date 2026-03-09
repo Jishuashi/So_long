@@ -6,11 +6,13 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 20:44:14 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/08 02:24:17 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/09 16:39:01 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
+
+static void	free_game(t_game *game);
 
 void	init_assets(t_game	*game)
 {
@@ -83,21 +85,30 @@ void	check_textures(t_game *game)
 		|| !game->assets->coin || !game->assets->exit)
 	{
 		ft_putstr_fd("Error\nImpossible de charger les textures\n", 2);
-		if (game->assets->wall)
-			mlx_destroy_image(game->mlx, game->assets->wall);
-		if (game->assets->player)
-			mlx_destroy_image(game->mlx, game->assets->player);
-		if (game->assets->floor)
-			mlx_destroy_image(game->mlx, game->assets->floor);
-		if (game->assets->coin)
-			mlx_destroy_image(game->mlx, game->assets->coin);
-		if (game->assets->exit)
-			mlx_destroy_image(game->mlx, game->assets->exit);
-		free(game->assets);
-		ft_free_all(game->map);
-		free(game->mlx);
-		free(game->size);
-		free(game->player_pos);
-		exit(1);
+		free_game(game);
 	}
+}
+
+static void	free_game(t_game *game)
+{
+	if (game->assets->wall)
+		mlx_destroy_image(game->mlx, game->assets->wall);
+	if (game->assets->player)
+		mlx_destroy_image(game->mlx, game->assets->player);
+	if (game->assets->floor)
+		mlx_destroy_image(game->mlx, game->assets->floor);
+	if (game->assets->coin)
+		mlx_destroy_image(game->mlx, game->assets->coin);
+	if (game->assets->exit)
+		mlx_destroy_image(game->mlx, game->assets->exit);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	free(game->assets);
+	ft_free_all(game->map);
+	free(game->size);
+	free(game->player_pos);
+	free(game->exit_pos);
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
+	exit(1);
 }
