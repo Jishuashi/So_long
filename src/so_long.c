@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:38:08 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/09 16:24:59 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/09 16:42:38 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,14 @@ static void	launch_game(char **map, size_t row, size_t col)
 	t_game	game;
 
 	ft_memset(&game, 0, sizeof(t_game));
-	game.map = map;
 	game.mlx = mlx_init();
+	if (!game.mlx)
+	{
+		ft_free_all(map);
+		ft_putstr_fd("Error\nThe minilibx cannot be loaded.\n", 2);
+		exit(1);
+	}
+	game.map = map;
 	game.width = (col * 64);
 	game.height = (row * 64);
 	game.size = get_point(row, col);
