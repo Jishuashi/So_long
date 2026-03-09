@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 14:23:19 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/07 14:23:51 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/09 16:01:26 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	**copy_map(char **map, size_t row)
 		if (!copy[i])
 		{
 			ft_free_all(copy);
+			ft_putstr_fd("Error\nThe allocation failed.\n", 2);
 			return (NULL);
 		}
 		i++;

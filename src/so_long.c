@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:38:08 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/09 15:28:47 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/09 15:59:02 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	so_long(char **map, size_t row, size_t col);
 static void	launch_game(char **map, size_t row, size_t col);
-static	void	check_no_name_file(char *path);
+static void	check_files(char *path);
 
 int	main(int ac, char *av[])
 {
@@ -27,12 +27,7 @@ int	main(int ac, char *av[])
 		ft_putstr_fd("Error\nNo map has been provided.\n", 2);
 		exit(1);
 	}
-	else if (!ft_strnstr(av[1], ".ber", ft_strlen(av[1])))
-	{
-		ft_putstr_fd("Error\nThe map is not in .ber format.\n", 2);
-		exit(1);
-	}
-	check_no_name_file(av[1]);
+	check_files(av[1]);
 	check_map_size(open(av[1], O_RDONLY));
 	col = get_nb_col(av[1]);
 	row = get_nb_row(av[1]);
@@ -77,12 +72,19 @@ static void	launch_game(char **map, size_t row, size_t col)
 	mlx_loop(game.mlx);
 }
 
-static	void	check_no_name_file(char *path)
+static void	check_files(char *path)
 {
-	if (ft_strnstr(path, "/.", ft_strlen(path)) != NULL
-		|| (ft_strlen(path) == 4 && path[0] == '.'))
+	size_t	len;
+
+	len = ft_strlen(path);
+	if (len < 4 || ft_strncmp(path + len - 4, ".ber", 4) != 0)
 	{
-		ft_putstr_fd("Error\nThe map .ber as no name.\n", 2);
-		exit (1);
+		ft_putstr_fd("Error\nInvalid map extension (must be .ber)\n", 2);
+		exit(1);
+	}
+	if (len == 4 || path[len - 5] == '/')
+	{
+		ft_putstr_fd("Error\nThe map .ber has no name\n", 2);
+		exit(1);
 	}
 }
