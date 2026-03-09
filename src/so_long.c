@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:38:08 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/09 15:59:02 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/09 16:24:59 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,14 @@ int	main(int ac, char *av[])
 	size_t	col;
 	size_t	row;
 
-	if (ac != 2)
+	if (ac < 2)
 	{
 		ft_putstr_fd("Error\nNo map has been provided.\n", 2);
+		exit(1);
+	}
+	if (ac > 2)
+	{
+		ft_putstr_fd("Error\nTo much argument was given\n", 2);
 		exit(1);
 	}
 	check_files(av[1]);
