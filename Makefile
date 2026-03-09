@@ -6,8 +6,6 @@ MINILIBX_DIR    = minilibx-linux
 LIBFT           = $(LIBFT_DIR)/libft.a
 MINILIBX        = $(MINILIBX_DIR)/libmlx.a
 
-MAIN			= src/so_long.c
-
 CC              = cc
 CFLAGS          = -Wall -Wextra -Werror -g
 MLXFLAG         = -lXext -lX11 -lm -lz
@@ -15,7 +13,8 @@ MLXFLAG         = -lXext -lX11 -lm -lz
 RM              = rm -rf
 OBJ_DIR         = obj
 
-SRCS            = src/maps_parsing.c \
+SRCS            = src/so_long.c \
+				  src/maps_parsing.c \
                   src/utils/utils.c \
                   src/utils/utils_map.c \
                   src/checker.c \
@@ -36,7 +35,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJS)
 	@echo -e "$(GREEN)Compiling $(NAME)...$(RESET)"
-	$(CC) $(CFLAGS) $(MAIN) $(OBJS) $(LIBFT) $(MINILIBX) $(MLXFLAG) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) $(MLXFLAG) -o $(NAME)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR) all

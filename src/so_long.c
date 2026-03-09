@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:38:08 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/08 03:19:52 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/09 14:35:08 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int	main(int ac, char *av[])
 		ft_putstr_fd("Error\nNo map has been provided.\n", 2);
 		exit(1);
 	}
-	else if (!ft_strnstr(av[1], ".ber", ft_strlen(av[1]))
-		|| !ft_strchr(av[1], 47))
+	else if (!ft_strnstr(av[1], ".ber", ft_strlen(av[1])))
 	{
 		ft_putstr_fd("Error\nThe map is not in .ber format.\n", 2);
 		exit(1);
