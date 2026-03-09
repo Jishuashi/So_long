@@ -35,7 +35,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJS)
 	@echo -e "$(GREEN)Compiling $(NAME)...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) $(MLXFLAG) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MINILIBX) $(MLXFLAG) -o $(NAME)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR) all
