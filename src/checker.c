@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 16:24:22 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/09 14:44:22 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/09 15:18:56 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ char	checker(char **map, size_t row, size_t col)
 		j = 0;
 		while (j < col)
 		{
-			if (map[i][j] != 'E' || map[i][j] != '1' || map[i][j] != 'C'
-				|| map[i][j] != 'P' || map[i][j] != '0')
+			if (map[i][j] != 'E' && map[i][j] != '1' && map[i][j] != 'C'
+				&& map[i][j] != 'P' && map[i][j] != '0')
 			{
 				ft_free_all(map);
 				ft_putstr_fd("Error\nThe map contain an invalid char.\n", 2);

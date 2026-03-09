@@ -6,7 +6,7 @@
 /*   By: hchartie <hchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 11:38:08 by hchartie          #+#    #+#             */
-/*   Updated: 2026/03/09 14:35:08 by hchartie         ###   ########.fr       */
+/*   Updated: 2026/03/09 15:28:47 by hchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	so_long(char **map, size_t row, size_t col);
 static void	launch_game(char **map, size_t row, size_t col);
+static	void	check_no_name_file(char *path);
 
 int	main(int ac, char *av[])
 {
@@ -31,6 +32,7 @@ int	main(int ac, char *av[])
 		ft_putstr_fd("Error\nThe map is not in .ber format.\n", 2);
 		exit(1);
 	}
+	check_no_name_file(av[1]);
 	check_map_size(open(av[1], O_RDONLY));
 	col = get_nb_col(av[1]);
 	row = get_nb_row(av[1]);
@@ -73,4 +75,14 @@ static void	launch_game(char **map, size_t row, size_t col)
 	mlx_hook(game.win, 17, 0, (int (*)())(void *)close_game, &game);
 	mlx_key_hook(game.win, (int (*)())(void *)key_press, &game);
 	mlx_loop(game.mlx);
+}
+
+static	void	check_no_name_file(char *path)
+{
+	if (ft_strnstr(path, "/.", ft_strlen(path)) != NULL
+		|| (ft_strlen(path) == 4 && path[0] == '.'))
+	{
+		ft_putstr_fd("Error\nThe map .ber as no name.\n", 2);
+		exit (1);
+	}
 }
